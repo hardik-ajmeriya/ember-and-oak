@@ -1,0 +1,14 @@
+{
+  "name": "ember-and-oak",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Ember & Oak — a full-stack MERN restaurant site with a real table-availability engine.",
+  "scripts": {
+    "install:all": "npm --prefix server install && npm --prefix client install",
+    "seed": "npm --prefix server run seed",
+    "dev": "concurrently -n api,web -c yellow,green \"npm --prefix server run dev\" \"npm --prefix client run dev\"",
+    "build": "npm --prefix client run build",
+    "start": "npm --prefix server start"
+  },
+  "devDependencies": { "concurrently": "^8.2.2" }
+}

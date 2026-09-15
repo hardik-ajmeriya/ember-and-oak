@@ -1,0 +1,84 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --shell-x: clamp(1.25rem, 5vw, 5rem);
+  }
+
+  * { -webkit-tap-highlight-color: transparent; }
+
+  body {
+    @apply bg-char-950 text-cream-100 font-sans antialiased;
+    overflow-x: hidden;
+  }
+
+  ::selection { @apply bg-brass text-char-950; }
+
+  ::-webkit-scrollbar { width: 10px; }
+  ::-webkit-scrollbar-track { @apply bg-char-950; }
+  ::-webkit-scrollbar-thumb { @apply bg-char-600 rounded-full border-2 border-char-950; }
+
+  :focus-visible {
+    @apply outline-none ring-1 ring-brass ring-offset-4 ring-offset-char-950;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer components {
+  .shell {
+    padding-inline: var(--shell-x);
+    @apply mx-auto w-full max-w-shell;
+  }
+
+  /* Editorial display type: light weight, generous leading, no shouting. */
+  .display {
+    @apply font-display font-light leading-[1.02] tracking-[-0.01em];
+  }
+
+  .eyebrow {
+    @apply font-sans text-[0.62rem] font-medium uppercase tracking-eyebrow text-brass;
+  }
+
+  .rule {
+    @apply h-px w-full bg-gradient-to-r from-transparent via-char-600 to-transparent;
+  }
+
+  .card-surface {
+    @apply relative overflow-hidden border border-char-700 bg-char-900/70;
+  }
+
+  /* Dotted leader between a dish name and its price, as on a printed menu. */
+  .leader {
+    @apply relative flex-1 border-b border-dotted border-char-600;
+    top: -0.32em;
+    margin-inline: 0.75rem;
+  }
+}
+
+@layer utilities {
+  .grain::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.35;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.28'/%3E%3C/svg%3E");
+  }
+
+  .text-balance { text-wrap: balance; }
+
+  .mask-fade-r {
+    -webkit-mask-image: linear-gradient(to right, black 78%, transparent 100%);
+    mask-image: linear-gradient(to right, black 78%, transparent 100%);
+  }
+}
